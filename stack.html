@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stack</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+        }
+
+        .flex-container>div {
+            /*div children of the flex container*/
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+    <script>
+        function uniqueHandler() {
+
+            let stackItems = document.getElementsByClassName('stack');
+            for (let index = 0; index < stackItems.length; index++) {
+                let element = stackItems[index].innerHTML;
+                for (let insideIndex = index + 1; insideIndex < stackItems.length; insideIndex++) {
+                    let elementInside = stackItems[insideIndex].innerHTML;
+
+                    if (element == elementInside) {
+                        console.log(stackItems[insideIndex])
+                        stackItems[insideIndex].remove();
+                        insideIndex--;
+                        index--;
+                    }
+                }
+            }
+        }
+        function popItem() {
+            var stackItems = [];
+            stackItems = document.getElementsByClassName("stack");
+            if (stackItems.length > 0) {
+                stackItems[stackItems.length - 1].remove();
+            }
+        }
+        function zap() {
+            let stackItems = document.getElementsByClassName('stack');
+            // var stackItems = [].map.call(elements, elem => elem.textContent);
+            var iv = document.getElementById("input").value;
+            if (stackItems != undefined && stackItems.length > 0) {
+                let stacksLength = stackItems.length;
+                for (let index = 0; index < stackItems.length; index++) {
+                    let element = stackItems[index].innerHTML;
+                    if (element == iv) {
+                        console.log(stackItems[index])
+                        stackItems[index].remove();
+                        index--;
+                    }
+
+                }
+            }
+        }
+        function makeNewDiv() {
+            /* make the div and its text */
+            let it = document.getElementById("input").value;
+            let element = document.createElement("div")
+            element.innerHTML = it;
+            element.className = "stack";
+            let target = document.getElementById("target");
+            // var nt = document.createTextNode(it);
+            target.appendChild(element);
+
+            /* add it to the container */
+            document.getElementById("target").appendChild(element)
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center fst-italic">Nikhil Porika <small id="full"> builds a stack</small>
+        </h2><br>
+        <div class="input-group mb-3">
+            <input type="text" id="input" class="form-control" placeholder="Enter any text" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div><br>
+        <!-- <input id="input" type="text"><br><br> -->
+        <div class="flex-container" id="target">
+            <div class="stack">row item 1</div>
+            <div class="stack">row item 2</div>
+            <div class="stack">row item 3</div>
+        </div><br>
+
+        <p class="fst-italic"> Press the button to create an new element of type div and then add it to the container.
+        </p>
+        <button onclick="makeNewDiv()" type="button" class="btn btn-outline-success">Push value</button>
+        <button onclick="popItem()" type="button" class="btn btn-outline-danger">Pop</button>
+        <button onclick="zap()" type="button" class="btn btn-outline-warning">Zap values</button>
+        <button onclick="uniqueHandler()" type="button" class="btn btn-outline-dark">Unique</button>
+        <br>
+        <a href="search.html" class="link-danger" id="full">Search Page</a><br>
+        <a href="reaction.html" class="link-warning" id="full">Reaction Page</a>
+
+    </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="./script.js"></script>
+
+</html>
