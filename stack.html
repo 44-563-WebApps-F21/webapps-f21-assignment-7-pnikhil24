@@ -88,6 +88,27 @@
             document.getElementById("target").appendChild(element)
 
         }
+        function uniqueHandler() {
+
+            let stackItems = document.getElementsByClassName('stack');
+            for (let index = 0; index < stackItems.length; index++) {
+                let element = stackItems[index].innerHTML;
+                for (let insideIndex = index + 1; insideIndex < stackItems.length; insideIndex++) {
+                    let elementInside = stackItems[insideIndex].innerHTML;
+
+                    if (element == elementInside) {
+                        console.log(stackItems[insideIndex])
+                        stackItems[index].remove();
+                        insideIndex--;
+                        index--;
+                    }
+
+
+                }
+
+            }
+
+        }
     </script>
 
 </head>
